@@ -10,6 +10,7 @@ package Homework.chapters2.lesson7;
              * * *
              * *
              *
+
              * */
             int height = 5;
             for (int i = 0; i < height; i++) {
@@ -25,11 +26,11 @@ package Homework.chapters2.lesson7;
             /*   Figure 5
 
              *       3
-             * *      2
-             * * *     1
-             * * * *    0
-             * * *    -1
-             * *     -2
+            * *      2
+           * * *     1
+          * * * *    0
+           * * *    -1
+            * *     -2
              *      -3
 
              * */
