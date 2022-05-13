@@ -6,10 +6,10 @@ package Homework.chapters2.lesson7;
             /*    Figure 4
 
              * * * * *
-               * * * *
-                 * * *
-                   * *
-                     *
+             * * * *
+             * * *
+             * *
+             *
              * */
             int height = 5;
             for (int i = 0; i < height; i++) {
@@ -24,19 +24,19 @@ package Homework.chapters2.lesson7;
 
             /*   Figure 5
 
-                *       3      
-               * *      2        
-              * * *     1  
+             *       3
+             * *      2
+             * * *     1
              * * * *    0
-              * * *    -1
-               * *     -2
-                *      -3
+             * * *    -1
+             * *     -2
+             *      -3
 
              * */
 
-            for (int i = 3; i >= -3 ; i--) {
+            for (int i = 3; i >= -3; i--) {
                 int y = i;
-                if(i < 0){
+                if (i < 0) {
                     y = -i;
                 }
                 for (int j = 3 - y; j < 4; j++) {
@@ -47,9 +47,44 @@ package Homework.chapters2.lesson7;
                 }
                 System.out.println();
             }
-           
+
+                  /*.Շեղանկյան խնդրի լուծման 2-րդ տարբերակը 2 մասով
+
+                      *
+                     * *
+                    * * *
+                   * * * *
+                  _________
+                    * * *
+                     * *
+                      *
+                   */
+            System.out.println("........");
+            for (int i = 0; i < 4; i++) {
+                for (int j = i; j <= 3; j++) {
+                    System.out.print(" ");
+                }
+
+                for (int k = 0; k <= i; k++) {
+                    System.out.print("* ");
+                }
+                System.out.println();
+            }
+            for (int i = 0; i < 3; i++) {
+                for (int j = 1 - i; j < 3; j++) {
+                    System.out.print(" ");
+                }
+                for (int j = i; j < 3; j++) {
+                    System.out.print("* ");
+                }
+                System.out.println();
             }
         }
+
+        }
+           
+
+
 
     
 
