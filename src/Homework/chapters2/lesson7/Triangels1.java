@@ -40,11 +40,12 @@ package Homework.chapters2.lesson7;
                     y = -i;
                 }
                 for (int j = 3 - y; j < 4; j++) {
-                    System.out.println(" ");                    
+                    System.out.print(" ");
                 }
-                for (int j = 0; j < ; j++) {
-                    
+                for (int j = y; j < 4; j++) {
+                    System.out.print("* ");
                 }
+                System.out.println();
             }
            
             }
