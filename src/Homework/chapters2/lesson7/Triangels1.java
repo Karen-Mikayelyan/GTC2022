@@ -1,7 +1,6 @@
 package Homework.chapters2.lesson7;
 
-
-    public class Triangels1 {
+public class Triangels1 {
         public static void main(String[] args) {
             /*    Figure 4
 
