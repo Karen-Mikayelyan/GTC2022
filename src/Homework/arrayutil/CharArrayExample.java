@@ -11,10 +11,10 @@ public class CharArrayExample {
         for (int i = 0; i < chars.length; i++) {
             if (chars[i] == 'o') {
                 cCuantity++;
-                System.out.print("с : " + cCuantity);
             }
-            System.out.println();
         }
+        System.out.print("с : " + cCuantity);
+        System.out.println();
 
         // 2․ Տպել մեջտեղի 2 սիմվոլները
         char[] chars1 = {'j', 'a', 'v', 'a', 'l', 'o', 'v', 'e'};
