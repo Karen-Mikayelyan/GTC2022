@@ -61,6 +61,15 @@ public class DynamicArray {
     }
 
     //Գրել մեթոդ delete(int index) որ տանք ինդեքսը, այդ ինդեքսի տակ գտնվող թիվը հեռացնի մասիվից. (նոր մասիվ պետք չէ սարքել)
+    void delete(int index) {
+        for (int i = 0; i < this.size; i++) {
+            if (this.array[index] == this.array[i]) {
+                this.array[i] = this.array[i + 1];
+            }
+        }
+        size--;
+        printArray();
+    }
 
     public void printArray() {
         for (int i = 0; i < size; i++) {

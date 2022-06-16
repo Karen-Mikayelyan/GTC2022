@@ -15,5 +15,6 @@ public class DynamicArrayDemo {
         da.add(1, 9);
         System.out.println();
         da.delete(2);
+
     }
 }
