@@ -1,6 +1,9 @@
-package homework.books;
+package homework.books.storage;
 
-public class BooksStorage {
+
+import homework.books.model.Book;
+
+public class BookStorage {
 
     private Book[] array = new Book[10];
     private int size = 0;
@@ -33,32 +36,35 @@ public class BooksStorage {
             if (array[i].getGenre().equals(genre)) {
                 System.out.println(array[i]);
                 break;
-
+            } else {
+                System.out.println("The book you are looking for was not found");
             }
         }
-        System.out.println("The book you were looking for was not found");
     }
 
     public void printBooksByAuthorName(String authorName) {
         for (int i = 0; i < size; i++) {
-            if (array[i].getAuthorName().equals(authorName)) {
+            if (array[i].getAuthor().equals(authorName)) {
                 System.out.println(array[i]);
                 break;
+            } else {
+                System.out.println("The book you are looking for was not found");
             }
         }
-        System.out.println("The book you were looking for was not found");
     }
 
-    public void printBooksByPriceRange(Double price) {
+    public void printBooksByPriceRange(double minPrice, double maxPrice) {
         for (int i = 0; i < size; i++) {
-            if (price.equals(array[i].getPrice())){
-                System.out.println(array[i]);
+            if (array[i].getPrice() < minPrice || array[i].getPrice() > maxPrice) {
+                System.out.println("No book found at your desired price");
             }
+            System.out.println(i + " . " + array[i]);
         }
-        System.out.println("The book you were looking for was not found");
     }
+
 
     public int getSize() {
         return size;
     }
+
 }

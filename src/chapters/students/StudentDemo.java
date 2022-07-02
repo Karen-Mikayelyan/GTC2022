@@ -1,56 +1,60 @@
 package chapters.students;
 
+import chapters.students.command.Commands;
+import chapters.students.model.Lesson;
+import chapters.students.model.Student;
+import chapters.students.storage.LessonStorage;
+import chapters.students.storage.StudentStorage;
+
 import java.util.Scanner;
 
-public class StudentDemo {
+public class StudentDemo implements Commands {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static StudentsStorage studentsStorage = new StudentsStorage();
+    private static StudentStorage studentStorage = new StudentStorage();
+    private static LessonStorage lessonStorage = new LessonStorage();
 
     public static void main(String[] args) {
+        Lesson java = new Lesson("java", "teacher java", 7, 10000);
+        Lesson mySql = new Lesson("myScl", "teacher myScl", 5, 7000);
+        Lesson php = new Lesson("php", "teacher php", 3, 5000);
+        lessonStorage.add(java);
+        lessonStorage.add(mySql);
+        lessonStorage.add(php);
+        studentStorage.add(new Student("poxos", "poxosyan", 25, "077777777", "Gyumri", java));
+        studentStorage.add(new Student("petros", "poxosyan", 33, "077777877", "Gyumri", mySql));
+        studentStorage.add(new Student("martiros", "poxosyan", 21, "077779777", "Gyumri", php));
         boolean run = true;
         while (run) {
-            System.out.println("please input 0 for exit");
-            System.out.println("please input 1 for add student");
-            System.out.println("please input 2 for print all student");
-            System.out.println("please input 3 for delete student by index");
-            System.out.println("please input 4 for print student by lesson");
-            System.out.println("please input 5 for print students count");
-            System.out.println("please input 6 for changing student lesson by index");
-
+            Commands.printCommands();
             int command = Integer.parseInt(scanner.nextLine());
             switch (command) {
-                case 0:
+                case EXIT:
                     run = false;
                     break;
-                case 1:
+                case ADD_STUDENT:
                     addStudent();
                     break;
-                case 2:
-                    studentsStorage.print();
+                case PRINT_ALL_Students:
+                    studentStorage.print();
                     break;
-                case 3:
-                    studentsStorage.print();
-                    System.out.println("Please choose student index");
-                    int index = Integer.parseInt(scanner.nextLine());
-                    studentsStorage.deleteByIndex(index);
+                case DELETE_STUDENT_BY_INDEX:
+                    deleteByIndex();
                     break;
-                case 4:
-                    System.out.println("Please input lesson name");
-                    String lessonName = scanner.nextLine();
-                    studentsStorage.printStudentsByLessonName(lessonName);
+                case PRINT_STUDENTS_BY_LESSON:
+                    printStudentsByLessonName();
                     break;
-                case 5:
-                    System.out.println("Students count");
-                    System.out.println(studentsStorage.getSize());
+                case PRINT_STUDENT_COUNT:
+                    System.out.println("Students count" + studentStorage.getSize());
                     break;
-                case 6:
-                    studentsStorage.print();
-                    System.out.println("Please choose student index");
-                    index = Integer.parseInt(scanner.nextLine());
-                    System.out.println("Please input lesson name");
-                    String lesson = scanner.nextLine();
-                    studentsStorage.ChangeLessonByIndex(lesson);
+                case CHANGE_STUDENT_LESSON:
+                    changeStudentLessonName();
+                    break;
+                case ADD_LESSON:
+                    addLesson();
+                    break;
+                case PRINT_ALL_LESSONS:
+                    lessonStorage.print();
                     break;
                 default:
                     System.out.println("Invalid command");
@@ -58,29 +62,89 @@ public class StudentDemo {
             }
 
         }
+    }
 
 
+    private static void addLesson() {
+        System.out.println("Please input lessonName");
+        String lessonName = scanner.nextLine();
+        System.out.println("Please input teacherName");
+        String teacherName = scanner.nextLine();
+        System.out.println("Please input lesson duration by month");
+        int duration = Integer.parseInt(scanner.nextLine());
+        System.out.println("Please input lesson price");
+        double price = Double.parseDouble(scanner.nextLine());
+
+        Lesson lesson = new Lesson(lessonName, teacherName, duration, price);
+        lessonStorage.add(lesson);
+        System.out.println("lesson created");
+    }
+
+
+    private static void changeStudentLessonName() {
+        studentStorage.print();
+        System.out.println("Please choose student index");
+        int index = Integer.parseInt(scanner.nextLine());
+        Student student = studentStorage.getStudentByIndex(index);
+        if (student == null) {
+            System.out.println("Wrong index !!!");
+            changeStudentLessonName();
+        } else {
+            if (lessonStorage.getSize() != 0) {
+                lessonStorage.print();
+                System.out.println("Please choose lesson index");
+                int lessonIndex = Integer.parseInt(scanner.nextLine());
+                Lesson lesson = lessonStorage.getLessonByIndex(lessonIndex);
+                if (lesson != null) {
+                    student.setLesson(lesson);
+                    System.out.println("lesson changed!");
+                }
+            }
+        }
+    }
+
+
+    private static void printStudentsByLessonName() {
+        System.out.println("Please input lesson name");
+        String lessonName = scanner.nextLine();
+        studentStorage.printStudentsByLessonName(lessonName);
+    }
+
+    private static void deleteByIndex() {
+        studentStorage.print();
+        System.out.println("Please choose student index");
+        int index = Integer.parseInt(scanner.nextLine());
+        studentStorage.deleteByIndex(index);
     }
 
     private static void addStudent() {
-        System.out.println("Please input student's name");
-        String name = scanner.nextLine();
-        System.out.println("Please input student's surname");
-        String surname = scanner.nextLine();
-        System.out.println("Please input student's age");
-        String ageStr = scanner.nextLine();
-        System.out.println("Please input student's phoneNumber");
-        String phoneNumber = scanner.nextLine();
-        System.out.println("Please input student's city");
-        String city = scanner.nextLine();
-        System.out.println("Please input student's lesson");
-        String lesson = scanner.nextLine();
+        if (lessonStorage.getSize() != 0) {
+            lessonStorage.print();
+            System.out.println("Please choose lesson index");
+            int lessonIndex = Integer.parseInt(scanner.nextLine());
+            Lesson lesson = lessonStorage.getLessonByIndex(lessonIndex);
+            if (lesson == null) {
+                System.out.println("Please choose correct index!!!");
+                addStudent();
+            } else {
+                System.out.println("Please input student's name");
+                String name = scanner.nextLine();
+                System.out.println("Please input student's surname");
+                String surname = scanner.nextLine();
+                System.out.println("Please input student's age");
+                System.out.println("Please input student's phoneNumber");
+                String phoneNumber = scanner.nextLine();
+                System.out.println("Please input student's city");
+                String city = scanner.nextLine();
+                int age = Integer.parseInt(scanner.nextLine());
 
-        int age = Integer.parseInt(ageStr);
-
-        Student student = new Student(name, surname, age, phoneNumber, city, lesson);
-        studentsStorage.add(student);
-        System.out.println("student created");
-
+                Student student = new Student(name, surname, age, phoneNumber, city, lesson);
+                studentStorage.add(student);
+                System.out.println("Student created");
+            }
+        }
     }
+
 }
+
+

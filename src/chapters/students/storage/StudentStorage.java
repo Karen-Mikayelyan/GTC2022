@@ -1,6 +1,8 @@
-package chapters.students;
+package chapters.students.storage;
 
-public class StudentsStorage {
+import chapters.students.model.Student;
+
+public class StudentStorage {
 
     private Student[] array = new Student[10];
     private int size = 0;
@@ -17,18 +19,13 @@ public class StudentsStorage {
         return size;
     }
 
-    public void ChangeLessonByIndex(String lesson) {
-
-        for (int i = 0; i < size; i++) {
-            if (i < 0 || i >= size) {
-                System.out.println("Invalid index");
-            } else {
-                 array[i].setLesson(lesson);
-                print();
-                return;
-            }
+    public Student getStudentByIndex(int index) {
+        if (index < 0 || index >= size) {
+            return null;
         }
+        return array[index];
     }
+
 
     public void deleteByIndex(int index) {
         if (index < 0 || index >= size) {
@@ -63,4 +60,5 @@ public class StudentsStorage {
             }
         }
     }
+
 }
