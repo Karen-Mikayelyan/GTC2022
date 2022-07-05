@@ -30,7 +30,12 @@ public class BookDemo implements Commands {
         boolean run = true;
         while (run) {
             Commands.printCommands();
-            int command = Integer.parseInt(scanner.nextLine());
+            int command;
+            try {
+                command = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                command = -1;
+            }
             switch (command) {
                 case EXIT:
                     run = false;
@@ -83,26 +88,41 @@ public class BookDemo implements Commands {
 
 
     private static void printBooksByAuthorName() {
-        bookStorage.print();
-        System.out.println("Please input author name");
-        String authorName = scanner.nextLine();
-        bookStorage.printBooksByAuthorName(authorName);
+        try {
+            bookStorage.print();
+            System.out.println("Please input author name");
+            String authorName = scanner.nextLine();
+            bookStorage.printBooksByAuthorName(authorName);
+        } catch (IllegalArgumentException e) {
+            System.out.println("The book by that author name you are looking for was not found, please try again!");
+            printBooksByAuthorName();
+        }
     }
 
     private static void printBooksByGenre() {
-        System.out.println("Please input genre");
-        String genre = scanner.nextLine();
-        bookStorage.printBooksByGenre(genre);
+        try {
+            System.out.println("Please input genre");
+            String genre = scanner.nextLine();
+            bookStorage.printBooksByGenre(genre);
+        }catch (IllegalArgumentException e) {
+            System.out.println("The book by that genre you are looking for was not found, please try again!");
+        }
     }
 
     private static void printBooksByPriceRange() {
-        bookStorage.print();
-        System.out.println("please input price range");
-        System.out.println("please input minimum price");
-        double minPrice = Double.parseDouble(scanner.nextLine());
-        System.out.println("please input maximum price");
-        double maxPrice = Double.parseDouble(scanner.nextLine());
-        bookStorage.printBooksByPriceRange(minPrice, maxPrice);
+        try {
+            bookStorage.print();
+            System.out.println("please input price range");
+            System.out.println("please input minimum price");
+            double minPrice = Double.parseDouble(scanner.nextLine());
+            System.out.println("please input maximum price");
+            double maxPrice = Double.parseDouble(scanner.nextLine());
+            bookStorage.printBooksByPriceRange(minPrice, maxPrice);
+        } catch (NumberFormatException e) {
+            System.out.println("The book you are looking for in that price was not found, please try again");
+            printBooksByPriceRange();
+        }
+
     }
 
 
@@ -138,7 +158,6 @@ public class BookDemo implements Commands {
                 System.out.println("book created");
 
             }
-            StringBuilder authorName = new StringBuilder(author.getName().trim() + " " + author.getSurname().trim());
         }
 
     }

@@ -54,11 +54,18 @@ public class BookStorage {
     }
 
     public void printBooksByPriceRange(double minPrice, double maxPrice) {
+        boolean setPrice = false;
         for (int i = 0; i < size; i++) {
-            if (array[i].getPrice() < minPrice || array[i].getPrice() > maxPrice) {
+            if (array[i].getPrice() >= minPrice && array[i].getPrice() <= maxPrice) {
+                System.out.println(i + " . " + array[i]);
+            } else if (array[i].getPrice() < minPrice || array[i].getPrice() > maxPrice) {
                 System.out.println("No book found at your desired price");
+                return;
             }
-            System.out.println(i + " . " + array[i]);
+            setPrice = true;
+        }
+        if (!setPrice) {
+            System.out.println("Wrong price!");
         }
     }
 

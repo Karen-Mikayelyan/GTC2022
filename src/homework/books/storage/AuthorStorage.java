@@ -41,9 +41,9 @@ public class AuthorStorage {
     public void addGender(String MALE, String FEMALE) {
         for (int i = 0; i < size; i++) {
             if (array[i].getGender() != null && array[i].getGender().equals(MALE)) {
-                System.out.println(i + MALE);
+                System.out.println("please choose " + 1 + " for input MALE");
             } else if (array[i].getGender() != null && array[i].getGender().equals(FEMALE)) {
-                System.out.println(i + FEMALE);
+                System.out.println("please choose " + 2 + " for input FEMALE");
             } else {
                 System.out.println("null");
 
