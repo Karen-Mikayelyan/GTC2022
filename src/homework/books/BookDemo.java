@@ -6,6 +6,7 @@ import homework.books.model.Book;
 import homework.books.storage.AuthorStorage;
 import homework.books.storage.BookStorage;
 
+
 import java.util.Scanner;
 
 
@@ -23,10 +24,11 @@ public class BookDemo implements Commands {
         authorStorage.add(ramchandraguha);
         authorStorage.add(erichmariaremarque);
         authorStorage.add(georgebyron);
-        bookStorage.add(new Book("India After Gandhi", ramchandraguha, 5000, 3, "historical"));
-        bookStorage.add(new Book("Triumphal Arch", erichmariaremarque, 8000, 5, "prose"));
-        bookStorage.add(new Book("Don Juan", georgebyron, 10000, 7, "satire"));
+//        bookStorage.add(new Book("India After Gandhi", ramchandraguha, 5000, 3, "historical"));
+//        bookStorage.add(new Book("Triumphal Arch", erichmariaremarque, 8000, 5, "prose"));
+//        bookStorage.add(new Book("Don Juan", georgebyron, 10000, 7, "satire"));
 
+        enterProgram();
         boolean run = true;
         while (run) {
             Commands.printCommands();
@@ -70,6 +72,17 @@ public class BookDemo implements Commands {
 
     }
 
+    private static void enterProgram() {
+        System.out.println("Please input login and password for enter");
+        String login = scanner.nextLine();
+        int password = scanner.nextInt();
+        bookStorage.startProgram(login, password);
+        if (LOGIN != login || PASSWORD != password){
+            System.out.println("Wrong login or password, please try again");
+            bookStorage.startProgram(login,password);
+        }
+    }
+
 
     private static void addAuthor() {
         System.out.println("Please input author name");
@@ -104,7 +117,7 @@ public class BookDemo implements Commands {
             System.out.println("Please input genre");
             String genre = scanner.nextLine();
             bookStorage.printBooksByGenre(genre);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("The book by that genre you are looking for was not found, please try again!");
         }
     }
@@ -153,9 +166,9 @@ public class BookDemo implements Commands {
                 }
 
 
-                Book book = new Book(title, author, price, count, genre);
-                bookStorage.add(book);
-                System.out.println("book created");
+//                Book book = new Book(title, author, price, count, genre);
+//                bookStorage.add(book);
+//                System.out.println("book created");
 
             }
         }
