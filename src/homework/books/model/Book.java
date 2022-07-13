@@ -7,21 +7,20 @@ public class Book {
     private double price;
     private int count;
     private String genre;
-    private String login;
-    private int password;
+    private User registeredUser;
 
 
-    public Book(String title, Author author, double price, int count, String genre, String login, int password) {
+    public Book(String title, Author author, double price, int count, String genre, User registeredUser) {
         this.title = title;
         this.author = author;
         this.price = price;
         this.count = count;
         this.genre = genre;
-        this.login = login;
-        this.password = password;
+        this.registeredUser = registeredUser;
+
     }
 
-    public Book() {
+    public Book(String triumphal_arch, Author erichmariaremarque, int i, int i1, String prose) {
     }
 
     public String getTitle() {
@@ -64,20 +63,12 @@ public class Book {
         this.genre = genre;
     }
 
-    public String getLogin() {
-        return login;
+    public User getRegisteredUser() {
+        return registeredUser;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public int getPassword() {
-        return password;
-    }
-
-    public void setPassword(int password) {
-        this.password = password;
+    public void setRegisteredUser(User registeredUser) {
+        this.registeredUser = registeredUser;
     }
 
     @Override
@@ -88,8 +79,7 @@ public class Book {
                 ", price=" + price +
                 ", count=" + count +
                 ", genre='" + genre + '\'' +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
+                ", registeredUser='" + registeredUser + '\'' +
                 '}';
     }
 }

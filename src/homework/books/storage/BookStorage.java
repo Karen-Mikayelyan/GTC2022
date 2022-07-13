@@ -10,8 +10,6 @@ public class BookStorage {
 
     private Book[] array = new Book[10];
     private int size = 0;
-    private String login = "admin";
-    private int password = 123456;
 
 
     public void add(Book book) {
@@ -79,13 +77,7 @@ public class BookStorage {
         return size;
     }
 
-    public void startProgram(String login, int password) {
-        if (LOGIN == login && PASSWORD == password) {
-            boolean run = true;
-            Commands.printCommands();
-        }
 
-    }
 }
 
 
