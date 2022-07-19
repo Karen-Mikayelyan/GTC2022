@@ -1,5 +1,9 @@
 package chapters.students.model;
 
+import java.util.Date;
+
+import static chapters.students.util.DateUtil.dateToString;
+
 public class Student {
 
     private String name;
@@ -8,15 +12,20 @@ public class Student {
     private String phoneNumber;
     private String city;
     private Lesson lesson;
+    private User registeredUser;
+    private Date registeredDate;
 
 
-    public Student(String name, String surname, int age, String phoneNumber, String city, Lesson lesson) {
+    public Student(String name, String surname, int age, String phoneNumber,
+                   String city, Lesson lesson, User registeredUser, Date registeredDate) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.phoneNumber = phoneNumber;
         this.city = city;
         this.lesson = lesson;
+        this.registeredUser = registeredUser;
+        this.registeredDate = registeredDate;
     }
 
     public Student() {
@@ -71,14 +80,33 @@ public class Student {
 
     }
 
+    public User getRegisteredUser() {
+        return registeredUser;
+    }
+
+    public void setRegisteredUser(User registeredUser) {
+        this.registeredUser = registeredUser;
+    }
+
+    public Date getRegisteredDate() {
+        return registeredDate;
+    }
+
+    public void setRegisteredDate(Date registeredDate) {
+        this.registeredDate = registeredDate;
+    }
+
     @Override
     public String toString() {
+        Student dateToString;
         return "Student{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", city='" + city + '\'' +
+                ", registeredUser='" + registeredUser + '\'' +
+                ", registeredDate='" + dateToString(registeredDate) + '\'' +
                 ", lesson='" + lesson.getName() + '\'' +
                 '}';
     }
