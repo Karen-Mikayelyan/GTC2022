@@ -116,7 +116,7 @@ public class FileUtil {
         String fileName = scanner.nextLine();
         System.out.println("please input the text you want to content");
         String content = scanner.nextLine();
-        if (myFile.isDirectory()) {
+        if (myFile.exists()) {
             myFile.createNewFile();
         }
         BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
