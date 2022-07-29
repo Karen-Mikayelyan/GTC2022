@@ -91,23 +91,19 @@ public class CollectionExample {
 
 
     // մեթոդը գրել այնպես, որ ընդունի ցանկացած Integer-ների լիստ, վերադարձնի նոր լիստ, որի մեջ էլեմենտները կլինեն հակառակ հերթականությամբ։
-    static int reverseNumbers(List<Integer> list) {
+    static List<Integer> reverseNumbers(List<Integer> list) {
         List<Integer> integerList = new ArrayList<>();
         for (Integer integer : list) {
             integerList.add(integer);
         }
         if (list.size() == integerList.size()) {
-            List<Integer> resultList = new ArrayList<>();
-            for (Integer integer1 : resultList) {
-                resultList.add(integer1);
-                if (list.size() == resultList.size()) {
-                    Collections.reverse(resultList);
-                    return integer1;
+                    Collections.reverse(integerList);
+                    return integerList;
                 }
-            }
-            }
-        return 0;
+
+        return null;
     }
+
 
 
 
